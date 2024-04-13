@@ -17,10 +17,23 @@ function Index() {
         console.log('Ecuación:', ecuacion);
         console.log('a:', a);
         console.log('b:', b);
-        
-        fetch(`URL_DE_TU_API?ecuacion=${ecuacion}&a=${a}&b=${b}`)
+        const header = {
+            'Content-Type': 'application/json'
+        }
+        const body = {
+            "ecuacion": ecuacion,
+            "a": a,
+            "b": b
+        }
+
+        fetch(`https://metodosnumericos-x5vj.onrender.com/falsePosition`, {
+            method: 'POST',
+            headers: header,
+            body: JSON.stringify(body)
+        })
         .then(response => response.json())
-        .then(data => setDatos(data))
+        .then(data => { setDatos(data)
+        console.log(data)})
         .catch(error => console.error('Error al obtener los datos:', error));
     };
 
